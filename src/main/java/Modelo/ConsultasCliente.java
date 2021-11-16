@@ -7,6 +7,7 @@ package Modelo;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -28,7 +29,7 @@ public class ConsultasCliente extends Conexion{
         ps.setInt(3, pro.getDni());
         ps.setString(4, pro.getEmail());
         ps.setInt(5, pro.getTelefono());
-        ps.setInt(6, pro.getFecha_nacimiento());
+        ps.setString(6, pro.getFecha_nacimiento());
         ps.setString(7, pro.getCobertura_medica());
         ps.execute();
         return true;
@@ -60,11 +61,74 @@ public class ConsultasCliente extends Conexion{
         ps.setInt(3, pro.getDni());
         ps.setString(4, pro.getEmail());
         ps.setInt(5, pro.getTelefono());
-        ps.setInt(6, pro.getFecha_nacimiento());
+        ps.setString(6, pro.getFecha_nacimiento());
         ps.setString(7, pro.getCobertura_medica());
         ps.setInt(8, pro.getId_cliente());
         ps.execute();
         return true;
+        
+    } catch(SQLException e){
+         System.err.println(e);
+         return false;
+    
+    } finally{
+        try{
+            con.close();
+            
+        } catch(SQLException e){
+            System.err.println(e);
+        }
+    
+    }
+    } 
+       
+              public boolean eliminar(Cliente pro){
+    PreparedStatement ps = null;
+    
+    String sql = "DELETE FROM clientes WHERE id_cliente=?";
+    Connection con = getConexion();
+    
+    try{
+        ps = con.prepareStatement(sql);
+        ps.setInt(1, pro.getId_cliente());
+        ps.execute();
+        return true;
+        
+    } catch(SQLException e){
+         System.err.println(e);
+         return false;
+    
+    } finally{
+        try{
+            con.close();
+            
+        } catch(SQLException e){
+            System.err.println(e);
+        }
+    
+    }
+    } 
+              
+    public boolean buscar(Cliente pro){
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+    Connection con = getConexion(); 
+    String sql = "SELECT FROM clientes WHERE dni=?";
+    
+    
+    try{
+        ps = con.prepareStatement(sql);
+        ps.setInt(1, pro.getDni());
+        rs = ps.executeQuery();
+        if(rs.next()){
+            pro.setId_cliente(Integer.parseInt(rs.getString("id_cliente")));
+            pro.setDni(Integer.parseInt(rs.getString("dni")));
+            pro.setNombre(rs.getString("nombre"));
+            pro.setApellido(rs.getString("apellido"));
+            return true;    
+        }
+        
+        return false;
         
     } catch(SQLException e){
          System.err.println(e);

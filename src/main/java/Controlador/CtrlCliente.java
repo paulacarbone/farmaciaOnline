@@ -46,7 +46,7 @@ public class CtrlCliente implements ActionListener {
               mod.setDni(Integer.parseInt(frm.txtDNI.getText()));
                mod.setEmail(frm.txtEmail.getText());
                 mod.setTelefono(Integer.parseInt(frm.txtTelefono.getText()));
-               mod.setFecha_nacimiento(Integer.parseInt(frm.txtFechaNacimiento.getText()));
+               mod.setFecha_nacimiento(frm.txtFechaNacimiento.getText());
              mod.setCobertura_medica(frm.txtCoberturaMedica.getText());
              
              if(modC.registrar(mod)){
@@ -58,7 +58,62 @@ public class CtrlCliente implements ActionListener {
              }
 
         }
+        
+         if(e.getSource() == frm.btnModificar){
+             mod.setId_cliente(Integer.parseInt(frm.txtID.getText()));
+            mod.setNombre(frm.txtNombre.getText());
+             mod.setApellido(frm.txtApellido.getText());
+              mod.setDni(Integer.parseInt(frm.txtDNI.getText()));
+               mod.setEmail(frm.txtEmail.getText());
+                mod.setTelefono(Integer.parseInt(frm.txtTelefono.getText()));
+               mod.setFecha_nacimiento(frm.txtFechaNacimiento.getText());
+             mod.setCobertura_medica(frm.txtCoberturaMedica.getText());
+             
+             if(modC.modificar(mod)){
+                 JOptionPane.showMessageDialog(null, "Registro modificado");
+                 limpiar();
+             } else{
+                 JOptionPane.showMessageDialog(null, "Error al modificar");
+                 limpiar();
+             }
+
+        }
+         
+           if(e.getSource() == frm.btnEliminar){
+             mod.setId_cliente(Integer.parseInt(frm.txtID.getText()));
+            
+             
+             if(modC.eliminar(mod)){
+                 JOptionPane.showMessageDialog(null, "Registro eliminado");
+                 limpiar();
+             } else{
+                 JOptionPane.showMessageDialog(null, "Error al eliminar");
+                 limpiar();
+             }
+
+        }  
+           if(e.getSource() == frm.btnBuscar){
+             mod.setDni(Integer.parseInt(frm.txtDNI.getText()));
+            
+             
+             if(modC.buscar(mod)){
+                 frm.txtDNI.setText(String.valueOf(mod.getDni()));
+                 frm.txtNombre.setText(mod.getNombre());
+                 frm.txtApellido.setText(mod.getApellido());
+                 
+             } else{
+                 JOptionPane.showMessageDialog(null, "No se encontró registro");
+                 limpiar();
+             }
+
+        }
+           
+            if(e.getSource() == frm.btnLimpiar){
+            limpiar();
+            }
     }
+    
+    
     
     public void limpiar(){
     frm.txtID.setText(null);

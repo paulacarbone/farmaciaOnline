@@ -15,7 +15,7 @@ public class Cliente {
     private int dni;
     private String email;
     private int telefono;
-    private int fecha_nacimiento;
+    private String fecha_nacimiento;
     private String cobertura_medica;
     private int id_cliente;
 
@@ -67,11 +67,11 @@ public class Cliente {
         this.telefono = telefono;
     }
 
-    public int getFecha_nacimiento() {
+    public String getFecha_nacimiento() {
         return fecha_nacimiento;
     }
 
-    public void setFecha_nacimiento(int fecha_nacimiento) {
+    public void setFecha_nacimiento(String fecha_nacimiento) {
         this.fecha_nacimiento = fecha_nacimiento;
     }
 
