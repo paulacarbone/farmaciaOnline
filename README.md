@@ -3,5 +3,5 @@
 ## Iniciar proyecto
 
 ```
-mvn exec:java
+mvn compile exec:java
 ```
