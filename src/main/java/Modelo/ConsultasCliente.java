@@ -70,7 +70,7 @@ public class ConsultasCliente extends Conexion {
             ps.execute();
             return true;
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.err.println(e);
             return false;
 
