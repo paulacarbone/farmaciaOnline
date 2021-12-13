@@ -97,6 +97,7 @@ public class CtrlCliente implements ActionListener {
             
              
              if(modC.buscar(mod)){
+                 frm.txtID.setText(String.valueOf(mod.getId_cliente()));
                  frm.txtDNI.setText(String.valueOf(mod.getDni()));
                  frm.txtNombre.setText(mod.getNombre());
                  frm.txtApellido.setText(mod.getApellido());
