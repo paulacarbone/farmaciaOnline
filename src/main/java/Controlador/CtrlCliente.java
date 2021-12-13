@@ -100,7 +100,10 @@ public class CtrlCliente implements ActionListener {
                  frm.txtDNI.setText(String.valueOf(mod.getDni()));
                  frm.txtNombre.setText(mod.getNombre());
                  frm.txtApellido.setText(mod.getApellido());
-                 
+                 frm.txtEmail.setText(mod.getEmail());
+                 frm.txtTelefono.setText(String.valueOf(mod.getTelefono()));
+                 frm.txtFechaNacimiento.setText(mod.getFecha_nacimiento());
+                 frm.txtCoberturaMedica.setText(mod.getCobertura_medica());
              } else{
                  JOptionPane.showMessageDialog(null, "No se encontró registro");
                  limpiar();

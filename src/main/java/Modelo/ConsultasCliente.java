@@ -116,7 +116,7 @@ public class ConsultasCliente extends Conexion {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = getConexion();
-        String sql = "SELECT FROM clientes WHERE dni=?";
+        String sql = "SELECT * FROM clientes WHERE dni=?";
 
         try {
             ps = con.prepareStatement(sql);
@@ -127,6 +127,11 @@ public class ConsultasCliente extends Conexion {
                 pro.setDni(Integer.parseInt(rs.getString("dni")));
                 pro.setNombre(rs.getString("nombre"));
                 pro.setApellido(rs.getString("apellido"));
+                pro.setCobertura_medica(rs.getString("cobertura_medica"));
+                pro.setEmail(rs.getString("email"));
+                String fechaNacimiento = new SimpleDateFormat("dd/MM/yyyy").format(rs.getDate("fecha_nacimiento"));
+                pro.setFecha_nacimiento(fechaNacimiento);
+                pro.setTelefono(rs.getInt("telefono"));
                 return true;
             }
 
